@@ -15,6 +15,12 @@
 		1C29914B2D32EAF600BE5084 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C29914A2D32EAF500BE5084 /* WebKit.framework */; };
 		1C2991632D32FD4C00BE5084 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2991622D32FD4C00BE5084 /* FileSystem.swift */; };
 		1C2991652D32FD6B00BE5084 /* FileSystemBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2991642D32FD6B00BE5084 /* FileSystemBridge.m */; };
+		1C2991722D331ECA00BE5084 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2991712D331ECA00BE5084 /* ImagePicker.swift */; };
+		1C2991742D331EF400BE5084 /* NativeImagePickerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2991732D331EF400BE5084 /* NativeImagePickerBridge.m */; };
+		1C2991772D33219E00BE5084 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2991762D33219E00BE5084 /* BottomSheet.swift */; };
+		1C2991792D33221B00BE5084 /* NativeBottomSheetBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2991782D33221B00BE5084 /* NativeBottomSheetBridge.m */; };
+		1C29917C2D33254500BE5084 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C29917B2D33254500BE5084 /* VideoPlayerView.swift */; };
+		1C29917E2D33257200BE5084 /* RCTVideoPlayerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C29917D2D33257200BE5084 /* RCTVideoPlayerViewManager.m */; };
 		1CDF0DD82D32CA2000399A4C /* RCTNativeLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDF0DD72D32CA2000399A4C /* RCTNativeLocalStorage.swift */; };
 		1CDF0DDC2D32CD8800399A4C /* NativeLocalStorageBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDF0DDB2D32CD8800399A4C /* NativeLocalStorageBridge.m */; };
 		7699B88040F8A987B510C191 /* libPods-nativeTemplate-nativeTemplateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-nativeTemplate-nativeTemplateTests.a */; };
@@ -47,6 +53,12 @@
 		1C29914A2D32EAF500BE5084 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		1C2991622D32FD4C00BE5084 /* FileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		1C2991642D32FD6B00BE5084 /* FileSystemBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileSystemBridge.m; sourceTree = "<group>"; };
+		1C2991712D331ECA00BE5084 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		1C2991732D331EF400BE5084 /* NativeImagePickerBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeImagePickerBridge.m; sourceTree = "<group>"; };
+		1C2991762D33219E00BE5084 /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		1C2991782D33221B00BE5084 /* NativeBottomSheetBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeBottomSheetBridge.m; sourceTree = "<group>"; };
+		1C29917B2D33254500BE5084 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		1C29917D2D33257200BE5084 /* RCTVideoPlayerViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTVideoPlayerViewManager.m; sourceTree = "<group>"; };
 		1CDF0DD62D32CA1F00399A4C /* nativeTemplate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "nativeTemplate-Bridging-Header.h"; sourceTree = "<group>"; };
 		1CDF0DD72D32CA2000399A4C /* RCTNativeLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTNativeLocalStorage.swift; sourceTree = "<group>"; };
 		1CDF0DDB2D32CD8800399A4C /* NativeLocalStorageBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeLocalStorageBridge.m; sourceTree = "<group>"; };
@@ -100,6 +112,9 @@
 		13B07FAE1A68108700A75B9A /* nativeTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1C29917A2D33253500BE5084 /* VideoPlayerViewStorage */,
+				1C2991752D33218E00BE5084 /* BottomSheetUI */,
+				1C2991702D331EB600BE5084 /* ImagePickerStorage */,
 				1C2991612D32FD2A00BE5084 /* FileSystemStorage */,
 				1CDF0DCF2D32BF8300399A4C /*  NativeLocalStorage */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -120,6 +135,33 @@
 				1C2991642D32FD6B00BE5084 /* FileSystemBridge.m */,
 			);
 			name = FileSystemStorage;
+			sourceTree = "<group>";
+		};
+		1C2991702D331EB600BE5084 /* ImagePickerStorage */ = {
+			isa = PBXGroup;
+			children = (
+				1C2991712D331ECA00BE5084 /* ImagePicker.swift */,
+				1C2991732D331EF400BE5084 /* NativeImagePickerBridge.m */,
+			);
+			name = ImagePickerStorage;
+			sourceTree = "<group>";
+		};
+		1C2991752D33218E00BE5084 /* BottomSheetUI */ = {
+			isa = PBXGroup;
+			children = (
+				1C2991762D33219E00BE5084 /* BottomSheet.swift */,
+				1C2991782D33221B00BE5084 /* NativeBottomSheetBridge.m */,
+			);
+			name = BottomSheetUI;
+			sourceTree = "<group>";
+		};
+		1C29917A2D33253500BE5084 /* VideoPlayerViewStorage */ = {
+			isa = PBXGroup;
+			children = (
+				1C29917B2D33254500BE5084 /* VideoPlayerView.swift */,
+				1C29917D2D33257200BE5084 /* RCTVideoPlayerViewManager.m */,
+			);
+			name = VideoPlayerViewStorage;
 			sourceTree = "<group>";
 		};
 		1CDF0DCF2D32BF8300399A4C /*  NativeLocalStorage */ = {
@@ -431,9 +473,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				1C2991772D33219E00BE5084 /* BottomSheet.swift in Sources */,
+				1C2991742D331EF400BE5084 /* NativeImagePickerBridge.m in Sources */,
+				1C29917C2D33254500BE5084 /* VideoPlayerView.swift in Sources */,
 				1C2991632D32FD4C00BE5084 /* FileSystem.swift in Sources */,
+				1C2991792D33221B00BE5084 /* NativeBottomSheetBridge.m in Sources */,
 				1CDF0DDC2D32CD8800399A4C /* NativeLocalStorageBridge.m in Sources */,
+				1C2991722D331ECA00BE5084 /* ImagePicker.swift in Sources */,
 				1C2991652D32FD6B00BE5084 /* FileSystemBridge.m in Sources */,
+				1C29917E2D33257200BE5084 /* RCTVideoPlayerViewManager.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				1CDF0DD82D32CA2000399A4C /* RCTNativeLocalStorage.swift in Sources */,
 			);
