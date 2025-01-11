@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import NativeLocalStorage from './specs/NativeLocalStorage';
-
+import FileSystem from './specs/FileSystem';
 const EMPTY = '<empty>';
 
 function App(): React.JSX.Element {
@@ -23,6 +23,9 @@ function App(): React.JSX.Element {
   function saveValue() {
     NativeLocalStorage?.setItem(editingValue ?? EMPTY, 'myKey');
     setValue(editingValue);
+  }
+  const handleDocumentDirect = async ()=>{
+    const documents = await FileSystem?.getDocumentDirectory();
   }
 
   function clearAll() {
