@@ -1,117 +1,128 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
   Text,
-  useColorScheme,
+  TextInput,
+  TouchableOpacity,
   View,
+  StyleSheet,
 } from 'react-native';
+import NativeLocalStorage from './specs/NativeLocalStorage';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+const EMPTY = '<empty>';
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [value, setValue] = React.useState<string | null>(null);
+  const [editingValue, setEditingValue] = React.useState<string | null>(null);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  React.useEffect(() => {
+    const storedValue = NativeLocalStorage?.getItem('myKey');
+    setValue(storedValue ?? '');
+  }, []);
+
+  function saveValue() {
+    NativeLocalStorage?.setItem(editingValue ?? EMPTY, 'myKey');
+    setValue(editingValue);
+  }
+
+  function clearAll() {
+    NativeLocalStorage?.clear();
+    setValue('');
+  }
+
+  function deleteValue() {
+    NativeLocalStorage?.removeItem('myKey');
+    setValue('');
+  }
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.inputContainer}>
+        <Text style={styles.title}>Enter Username</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your username"
+          value={editingValue ?? ''}
+          onChangeText={setEditingValue}
+        />
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={saveValue}>
+          <Text style={styles.buttonText}>Save Username</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={clearAll}>
+          <Text style={styles.buttonText}>Clear All</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={deleteValue}>
+          <Text style={styles.buttonText}>Delete Username</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.storedValueContainer}>
+        <Text style={styles.storedValueTitle}>Stored Username:</Text>
+        <Text style={styles.storedValue}>{value ?? 'No username saved'}</Text>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: '#f5f5f5',
   },
-  sectionTitle: {
-    fontSize: 24,
+  inputContainer: {
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '600',
+    marginBottom: 10,
+  },
+  input: {
+    height: 40,
+    width: '80%',
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    fontSize: 16,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: '#6200ee',
+    padding: 10,
+    borderRadius: 8,
+    margin: 5,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
     fontWeight: '600',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  storedValueContainer: {
+    marginTop: 20,
+    alignItems: 'center',
   },
-  highlight: {
-    fontWeight: '700',
+  storedValueTitle: {
+    fontSize: 16,
+    fontWeight: '500',
+    marginBottom: 5,
+  },
+  storedValue: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#333',
   },
 });
 
