@@ -10,7 +10,7 @@ import VideoPlayerList from './pages/VideoPlayerList';
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
-    <VideoPlayerList />
+    {/* <VideoPlayerList /> */}
     </SafeAreaView>
   );
 };

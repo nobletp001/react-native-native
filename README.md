@@ -1,79 +1,57 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Hire Me for Your Next Native, Kotlin, Swift, and React Native Project
 
-# Getting Started
+## Step 3: Building Native Modules and Components
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+We are using **Codegen** and **Turbo** to build the native modules that communicate efficiently with React Native. These tools help automate the process of creating bindings between JavaScript and native code, ensuring smooth communication between the two layers.
 
-## Step 1: Start the Metro Server
+### Native Modules We Are Building:
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- **VideoPlayer**: A native module to handle video playback with enhanced features.
+- **LocalToStage File System**: A module to manage file storage and interaction with the local file system.
+- **Image Picker**: A module that allows for selecting images from the device's gallery or camera.
+- **BottomSheet**: A native module to implement bottom sheet components for better user interactions.
+- **FileSystem**: A native module for accessing and manipulating the file system on both Android and iOS.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+### 3.1: Adding a Native Module for Android (Java/Kotlin)
 
-```bash
-# using npm
-npm start
+#### Create the Native Module:
+1. Navigate to `android/src/main/java/com/{yourproject}`.
+2. Create a new Java/Kotlin class for your module. For example, `MyNativeModule.java`.
+3. Extend `ReactContextBaseJavaModule` and override necessary methods.
 
-# OR using Yarn
-yarn start
-```
+#### Register the Native Module:
+1. Open `MainApplication.java` (or `MainApplication.kt` for Kotlin).
+2. Add your new module to the `getPackages()` method.
 
-## Step 2: Start your Application
+### 3.2: Adding a Native Module for iOS (Objective-C/Swift)
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+#### Create the Native Module:
+1. Navigate to the `ios/{yourproject}` directory.
+2. Create a new `.m` (Objective-C) or `.swift` (Swift) file for your module. For example, `MyNativeModule.m`.
+3. Use the `RCT_EXPORT_METHOD` macro for methods you want to expose to JavaScript.
 
-### For Android
+#### Link the Module:
+1. If you're using Objective-C, ensure the module is added to the bridging header and properly linked in `AppDelegate.m`.
 
-```bash
-# using npm
-npm run android
+#### Test Native Methods:
+1. Once your module is set up and linked, you can call it from JavaScript just like any other module in React Native.
 
-# OR using Yarn
-yarn android
-```
+### 3.3: Building a Native UI Component
 
-### For iOS
+#### Create a Custom UI Component for Android (Java/Kotlin):
+1. In `android/src/main/java/com/{yourproject}`, create a new class extending `ReactViewGroup` or `SimpleViewManager` for the component.
+2. Override necessary methods to render your custom view.
 
-```bash
-# using npm
-npm run ios
+#### Create a Custom UI Component for iOS (Objective-C/Swift):
+1. In the `ios/{yourproject}` folder, create a new `.m` or `.swift` file for your UI component.
+2. Use `RCT_EXPORT_VIEW_PROPERTY` to expose properties to JavaScript.
+3. Implement the `UIView` or `UIViewController` that your component represents.
 
-# OR using Yarn
-yarn ios
-```
+#### Use the Native UI Component in React Native:
+1. In your React Native app, import and use the new native component like any other React Native component.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## Step 4: Testing and Debugging
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- **For Android:** You can test the changes on an Android Emulator or a connected Android device.
+- **For iOS:** Similarly, use the iOS Simulator or a connected device.
+- To ensure your native module or component is working, test it by calling it from JavaScript and checking for any errors.
