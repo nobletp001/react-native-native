@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { FlatList, StyleSheet, View, Dimensions, ListRenderItem } from 'react-native';
-import VideoPlayer from '../specs/VideoPlayer';
+import VideoPlayer from '../specs/videoplayer/VideoPlayer';
 
 type VideoItem = {
   id: string;
